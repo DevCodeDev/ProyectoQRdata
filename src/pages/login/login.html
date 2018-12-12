@@ -1,0 +1,44 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>App Control</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+  <form [formGroup]="myForm" (ngSubmit)="loginUser()">
+    <ion-list>
+      <ion-item text-center>
+        <ion-title>Inicio Sesion</ion-title>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="person" item-left></ion-icon>
+        <ion-label stacked>Email: </ion-label>
+        <ion-input formControlName="email" type="text" placeholder="Email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="key" item-left></ion-icon>
+        <ion-label stacked>Password: </ion-label>
+        <ion-input formControlName="password" type="password" placeholder="Password"></ion-input>
+      </ion-item>   
+    </ion-list>
+    <div padding>
+      <button ion-button block type="submit" [disabled]="!myForm.valid">Ingresar</button>
+    </div>
+  </form>
+  <div text-center>
+    <a ion-button block clear (click)="goToSignup()">
+      Nueva Cuenta
+    </a>
+    <a ion-button block clear (click)="goToResetPassword()">
+      Olvide Password
+    </a>
+  </div>
+
+</ion-content>
