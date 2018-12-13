@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { IonicPage } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
@@ -13,6 +13,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
   templateUrl: 'home.html'
 })
 export class HomePage {
+
   qrData = null;
   createdCode = null;
   scannedCode = null;
@@ -24,10 +25,12 @@ export class HomePage {
 
   constructor( 
     public navCtrl: NavController, 
+    public navParams: NavParams,
     private barcodeScanner: BarcodeScanner, 
     private camera: Camera
     ) { 
       this.currentDate = new Date().toString();
+      
     }
 
     // scanear
@@ -59,6 +62,7 @@ export class HomePage {
        console.error( error );
      });
    }
+
   //  nuevo documento
    NuevoDocument(){
      alert("creaste nuevo documento");
@@ -66,7 +70,7 @@ export class HomePage {
 
   //  guardar toda la data
    GuardarDocument(){
-     alert("Guardando toda la data creada");
+    alert("Guardar Document nuevo documento");
    }
 
 
