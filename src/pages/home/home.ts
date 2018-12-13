@@ -6,6 +6,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularFireDatabase } from 'angularfire2/database';
+import firebase from 'firebase';
  
 // @IonicPage()
 @Component({
@@ -14,11 +15,12 @@ import { AngularFireDatabase } from 'angularfire2/database';
 })
 export class HomePage {
 
+  usuario:any = {};
   qrData = null;
   createdCode = null;
   scannedCode = null;
 
-  image: any;
+  image: string = null;
 
   //fecha
   currentDate;
@@ -27,7 +29,9 @@ export class HomePage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     private barcodeScanner: BarcodeScanner, 
-    private camera: Camera
+    private cameraPlugin: Camera,
+    private camera: Camera,
+    public afDB: AngularFireDatabase
     ) { 
       this.currentDate = new Date().toString();
       
@@ -43,35 +47,50 @@ export class HomePage {
    }
 
   //  tomar foto
-     getPicture(){
-      let options: CameraOptions = {
-      //  quality: 70,
-      //  destinationType: this.camera.DestinationType.FILE_URI,
-      //  encodingType: this.camera.EncodingType.JPEG,
-      //  mediaType: this.camera.MediaType.PICTURE
-         destinationType: this.camera.DestinationType.DATA_URL,
-         targetWidth: 1000,
-         targetHeight: 1000,
-         quality: 100
-     }
-     this.camera.getPicture( options )
-     .then(imageData => {
-       this.image = `data:image/jpeg;base64,${imageData}`;
-     })
-     .catch(error =>{
-       console.error( error );
-     });
-   }
-
-  //  nuevo documento
-   NuevoDocument(){
-     alert("creaste nuevo documento");
+    takeSelfie(){
+      this.cameraPlugin.getPicture({
+        quality : 90,
+        destinationType : this.cameraPlugin.DestinationType.DATA_URL,
+        sourceType : this.cameraPlugin.PictureSourceType.CAMERA,
+        allowEdit : true,
+        encodingType: this.cameraPlugin.EncodingType.PNG,
+        targetWidth: 500,
+        targetHeight: 500,
+        saveToPhotoAlbum: true
+      }).then(profilePicture => {
+        // Send the picture to Firebase Storage
+        const selfieRef = firebase.storage().ref('profilePictures/user1/profilePicture.png');
+        selfieRef
+        .putString(profilePicture, 'base64', {contentType: 'image/png'})
+        .then(savedProfilePicture => {
+          firebase
+            .database()
+            .ref(`users/user1/profilePicture`)
+            .set(savedProfilePicture.downloadURL);
+        }).then(imageData => {
+          this.image = `data:image/jpeg;base64,${imageData}`;
+        }).catch(error =>{
+               console.error( error );
+           });
+      }, error => {
+        // Log an error to the console if something goes wrong.
+        console.log("ERROR -> " + JSON.stringify(error));
+      });
    }
 
   //  guardar toda la data
    GuardarDocument(){
-    alert("Guardar Document nuevo documento");
+     console.log(this.usuario);
+    // this.usuario.id = Date.now();
+    this.afDB.database.ref('usuarios/descripcion').set(this.usuario);
+
    }
+
+  //  nuevo documento
+  NuevoDocument(){
+    alert("creaste nuevo documento");
+  }
+
 
 
  

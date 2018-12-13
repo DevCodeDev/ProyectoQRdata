@@ -19,7 +19,7 @@
       </ion-card-content>
     </ion-card> 
 
-        <ion-card >
+        <!-- <ion-card >
             <ion-item>
               <button ion-button block (click)="getPicture()">Toma una foto</button>
               <img [src]="image" *ngIf="image" width="250" height="250" required/>  
@@ -33,7 +33,23 @@
               </ion-item>
                   <span>{{currentDate}}</span> 
             </ion-card-content>
+          </ion-card> -->
+
+          <!---Documento secundario----->
+          <ion-card>
+            <ion-item>
+                <button ion-button block (click)="takeSelfie()">Toma una foto</button>
+                <img [src]="image" *ngIf="image" required/>  
+            </ion-item>
+            <ion-list>
+                <ion-item>
+                  <ion-label stacked>Descripcion</ion-label>
+                  <ion-textarea [(ngModel)]="usuario.descripcion" placeholder="detalle aqui"></ion-textarea>
+                </ion-item>
+            </ion-list>
           </ion-card>
+  
+          <!----Fin Documento secundario------->
 
       <ion-fab right bottom>
         <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>

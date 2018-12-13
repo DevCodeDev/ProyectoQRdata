@@ -14,9 +14,6 @@ export class UsuariosService {
     public createUsuario(usuario){
         return this.afDB.database.ref('/usuarios/' + usuario.id).set(usuario);
     }
-    public operacionesUsuario(usuario){
-        return this.afDB.database.ref('/usuarios/' + usuario.id).set(usuario);
-    }
     public editUsuario(usuario){
         return this.afDB.database.ref('/usuarios/' + usuario.id).set(usuario);
     }
