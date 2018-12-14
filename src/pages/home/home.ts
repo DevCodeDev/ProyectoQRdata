@@ -33,8 +33,7 @@ export class HomePage {
     private camera: Camera,
     public afDB: AngularFireDatabase
     ) { 
-      this.currentDate = new Date().toString();
-      
+      this.currentDate = new Date().toString();   
     }
 
     // scanear
@@ -82,7 +81,7 @@ export class HomePage {
    GuardarDocument(){
      console.log(this.usuario);
     // this.usuario.id = Date.now();
-    this.afDB.database.ref('usuarios/').set(this.usuario);
+    this.afDB.database.ref('usuarios/descripcion').set(this.usuario);
    }
 
   //  nuevo documento

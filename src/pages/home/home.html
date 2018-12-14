@@ -11,52 +11,6 @@
 </ion-header>
  
 <ion-content padding>
-
-    <button ion-button full icon-left (click)="scanCode()" color="secondary"><ion-icon name="qr-scanner"></ion-icon>Escanear Codigo</button>
-    <ion-card *ngIf="scannedCode">
-      <ion-card-content>
-        Resultado de Scan: {{ scannedCode }}
-      </ion-card-content>
-    </ion-card> 
-
-        <!-- <ion-card >
-            <ion-item>
-              <button ion-button block (click)="getPicture()">Toma una foto</button>
-              <img [src]="image" *ngIf="image" width="250" height="250" required/>  
-            </ion-item>
-            <ion-card-content>
-              <h3>
-                Descripcion
-              </h3>
-              <ion-item>
-                  <ion-textarea ng-model="string" name="description" placeholder="detalle aqui" required></ion-textarea>
-              </ion-item>
-                  <span>{{currentDate}}</span> 
-            </ion-card-content>
-          </ion-card> -->
-
-          <!---Documento secundario----->
-          <ion-card>
-            <ion-item>
-                <button ion-button block (click)="takeSelfie()">Toma una foto</button>
-                <img [src]="image" *ngIf="image" required/>  
-            </ion-item>
-            <ion-list>
-                <ion-item>
-                  <ion-label stacked>Descripcion</ion-label>
-                  <ion-textarea [(ngModel)]="usuario.descripcion" placeholder="detalle aqui"></ion-textarea>
-                </ion-item>
-            </ion-list>
-          </ion-card>
-  
-          <!----Fin Documento secundario------->
-
-      <ion-fab right bottom>
-        <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
-        <ion-fab-list side="left">
-          <button ion-fab type="submit" (click)="NuevoDocument()"><ion-icon name="clipboard"></ion-icon></button>
-          <button ion-fab type="submit" (click)="GuardarDocument()"><ion-icon name="send"></ion-icon></button>
-        </ion-fab-list>
-      </ion-fab>
+<h2>hola mundo</h2>
  
 </ion-content>
