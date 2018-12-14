@@ -82,8 +82,7 @@ export class HomePage {
    GuardarDocument(){
      console.log(this.usuario);
     // this.usuario.id = Date.now();
-    this.afDB.database.ref('usuarios/descripcion').set(this.usuario);
-
+    this.afDB.database.ref('usuarios/').set(this.usuario);
    }
 
   //  nuevo documento
