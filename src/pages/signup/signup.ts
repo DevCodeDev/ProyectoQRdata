@@ -83,7 +83,7 @@ export class SignupPage {
         });
         this.loading.present();
 
-        //afDB
+        
         
 
     }
