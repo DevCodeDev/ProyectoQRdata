@@ -7,6 +7,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularFireDatabase } from 'angularfire2/database';
 import firebase from 'firebase';
+import { UsuariosService } from '../../services/usuarios.service';
  
 // @IonicPage()
 @Component({
@@ -82,7 +83,7 @@ export class HomePage {
    GuardarDocument(){
      console.log(this.usuario);
     // this.usuario.id = Date.now();
-    this.afDB.database.ref('usuarios/').set(this.usuario);
+    this.afDB.database.ref('usuarios/descripcion/').set(this.usuario);
    }
 
   //  nuevo documento
