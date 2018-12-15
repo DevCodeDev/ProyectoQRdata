@@ -20,6 +20,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Camera } from '@ionic-native/camera';
+import { UsuariosService } from '../services/usuarios.service';
 
 
 export const firebaseConfig = {
@@ -59,7 +60,8 @@ export const firebaseConfig = {
     SplashScreen,
     Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    BarcodeScanner
+    BarcodeScanner,
+    UsuariosService
   ]
 })
 export class AppModule {}

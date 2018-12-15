@@ -11,7 +11,13 @@
 </ion-header>
  
 <ion-content padding>
-<h2>{{DateProperty}}</h2>
+
+  <!-- data de operaciones -->
+    <ion-item>
+        <ion-label item-start>Operaciones: </ion-label>
+        <ion-badge item-end>50</ion-badge>
+        <ion-label item-center>{{DateProperty}}</ion-label>
+    </ion-item>
 
 <!-- muestra la fecha y hora -->
 <ion-item>
@@ -19,8 +25,35 @@
 </ion-item>
 <!-- Fin muestra la fecha y hora -->
 
+<!-- lista de detalles desde lugar -->
+<ion-list>
+    <ion-item-sliding *ngFor="let lugar of lugares">
+      <ion-item>
+          <ion-thumbnail item-start>
+          <img src="img/slimer.png">
+          </ion-thumbnail>
+          <h2>{{lugar.codeQR}}</h2>
+          <p>{{lugar.fechaActual}}</p>
+          <h3>{{lugar.descripcion}}</h3>
+      </ion-item>
+
+      <!-- borrado de datos en el home -->
+      <ion-item-options side="right">
+        <button ion-button color="danger">
+          <!-- Advanced: explicity set the icon for each platform -->
+          <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+<!-- Fin lista de detalles desde lugar -->
+
+<!-- boton de agregar -->
 <ion-fab right bottom>
   <button ion-fab color="light" (click)="navegarALugar()"><ion-icon name="add"></ion-icon></button>
 </ion-fab>
+
+
  
 </ion-content>
