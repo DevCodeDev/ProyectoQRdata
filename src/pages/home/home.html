@@ -12,6 +12,7 @@
  
 <ion-content padding>
 
+<<<<<<< HEAD
 <!-- lista de detalles desde lugar -->
 <ion-list>
     <ion-item-sliding>
@@ -40,5 +41,29 @@
 </ion-fab>
 
 
+=======
+    <ion-list>
+        <ion-item-sliding *ngFor="let lugar of lugares">
+          <ion-item>
+            <ion-avatar item-start>
+              <img src="img/slimer.png">
+            </ion-avatar>
+            <h2>{{lugar.nombre}}</h2>
+            <h2>{{lugar.direccion}}</h2>
+            <h2>{{lugar.categoria}}</h2>
+          </ion-item>
+          <ion-item-options side="right">
+            <button ion-button color="danger" (click)="deleteLugar(lugar)">
+                <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
+              Delete
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+
+      <ion-fab right bottom>
+        <button ion-fab color="light" (click)="IrVistaDetalle()"><ion-icon ios="ios-add" md="md-add"></ion-icon></button>
+      </ion-fab>
+>>>>>>> prueba1
  
 </ion-content>
