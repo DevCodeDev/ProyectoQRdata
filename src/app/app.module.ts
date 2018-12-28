@@ -21,6 +21,8 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Camera } from '@ionic-native/camera';
 import { UsuariosService } from '../services/usuarios.service';
+import { LugaresService } from '../services/lugares.services';
+import { AddemployeePage } from '../pages/addemployee/addemployee';
 
 
 export const firebaseConfig = {
@@ -37,7 +39,8 @@ export const firebaseConfig = {
     MyApp,
     HomePage,
     LoginPage,
-    LugarPage
+    LugarPage,
+    AddemployeePage
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,8 @@ export const firebaseConfig = {
     MyApp,
     HomePage,
     LoginPage,
-    LugarPage
+    LugarPage,
+    AddemployeePage
   ],
   providers: [
     StatusBar,
@@ -61,7 +65,8 @@ export const firebaseConfig = {
     Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BarcodeScanner,
-    UsuariosService
+    UsuariosService,
+    LugaresService
   ]
 })
 export class AppModule {}

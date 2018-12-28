@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Lugar</ion-title>
+    <ion-title>Creacion de Data</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -17,45 +17,26 @@
     <ion-list>
         <!-- Scanear codigo -->
         <button ion-button full icon-left (click)="scanCode()" color="secondary"><ion-icon name="qr-scanner"></ion-icon>Scan Code</button>
-        <ion-card *ngIf="scannedCode">
-          <ion-card-content>
-            <!-- Result from Scan: {{ scannedCode }} -->
-          </ion-card-content>
-        </ion-card>
-
-        <ion-item>
-          <ion-label floating>codeQR</ion-label>
-          <ion-input type="text" value="">{{scannedCode}}</ion-input>
-        </ion-item>
-
-        <ion-item>
-          <p>5/12/2005 09:25:02 AM</p>
-        </ion-item>
+        <div *ngIf="scannedCode">
+          <p>{{lugar.scannedCode}}</p>
+        </div>
+        
 
                 <!-- tomar foto -->
-        <ion-item style="align-items:center">
-            <ion-card class="card-background-page" style="position: relative;
-            text-align: center; height: 250px;align-items:center;">
-              <div class="card-title"
-              style="position: absolute;
-              top: 36%;
-              font-size: 2.0em;
-              width: 100%;
-              font-weight: bold;
-              color: lightseagreen;" (click)="getPicture()"><ion-icon ios="ios-camera" md="md-camera"></ion-icon></div>
-              <img [src]="image" *ngIf="image" />
-            </ion-card>
+        <ion-item>
+            <button ion-button block (click)="getPicture()">Tomar Foto</button>
+            <img [src]="image" *ngIf="image"> 
           </ion-item>
         <!-- fin tomar foto -->
           
         <!-- descripcion -->
         <ion-item>
           <ion-label floating>descripcion</ion-label>
-          <ion-textarea></ion-textarea>
+          <ion-textarea [(ngModel)]="lugar.descripcion"></ion-textarea>
         </ion-item>
 
         <!-- guardar en bd -->
-        <button ion-button full>Guardar</button>
+        <button ion-button full (click)="guardarLugar()">Guardar</button>
       
       </ion-list>
 </ion-content>
