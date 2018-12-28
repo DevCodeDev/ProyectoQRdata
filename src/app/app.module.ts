@@ -9,6 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
+import { LugarPage } from '../pages/lugar/lugar';
 
 // conexion bd
 import { AngularFireModule } from 'angularfire2';
@@ -19,6 +20,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Camera } from '@ionic-native/camera';
+import { LugaresService } from '../services/lugares.service';
+
 
 
 export const firebaseConfig = {
@@ -34,7 +37,8 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
+    LugarPage
   ],
   imports: [
     BrowserModule,
@@ -49,14 +53,16 @@ export const firebaseConfig = {
   entryComponents: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
+    LugarPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    BarcodeScanner
+    BarcodeScanner,
+    LugaresService
   ]
 })
 export class AppModule {}

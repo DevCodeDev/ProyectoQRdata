@@ -5,45 +5,33 @@
             <ion-icon name="contact"></ion-icon>
         </ion-avatar>
         <h2>Marty McFly</h2>
-        <p>November 5, 1955</p>
       </ion-item>
   </ion-navbar>
 </ion-header>
  
 <ion-content padding>
 
-    <button ion-button full icon-left (click)="scanCode()" color="secondary"><ion-icon name="qr-scanner"></ion-icon>Escanear Codigo</button>
-    <ion-card *ngIf="scannedCode">
-      <ion-card-content>
-        Resultado de Scan: {{ scannedCode }}
-      </ion-card-content>
-    </ion-card> 
-
-          <!---Documento secundario----->
-          <ion-card>
-            <ion-item>
-                <button ion-button block (click)="takeSelfie()">Toma una foto</button>
-                <img [src]="image" *ngIf="image" required/>
-             </ion-item>
-            <ion-list>
-              <!-- <ion-item>
-                  <ion-img width="80" height="80" src="https://firebasestorage.googleapis.com/v0/b/ionicreadqr.appspot.com/o/profilePictures%2Fuser1%2FprofilePicture.png?alt=media&token=76291106-231e-4df3-81e1-cac6ec4527d4"></ion-img>
-              </ion-item> -->
-                <ion-item>
-                  <ion-label stacked>Descripcion</ion-label>
-                  <ion-textarea [(ngModel)]="usuario.descripcion" placeholder="detalle aqui"></ion-textarea>
-                </ion-item>
-            </ion-list>
-          </ion-card>
-  
-          <!----Fin Documento secundario------->
+    <ion-list>
+        <ion-item-sliding *ngFor="let lugar of lugares">
+          <ion-item>
+            <ion-avatar item-start>
+              <img src="img/slimer.png">
+            </ion-avatar>
+            <h2>{{lugar.nombre}}</h2>
+            <h2>{{lugar.direccion}}</h2>
+            <h2>{{lugar.categoria}}</h2>
+          </ion-item>
+          <ion-item-options side="right">
+            <button ion-button color="danger" (click)="deleteLugar(lugar)">
+                <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
+              Delete
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
 
       <ion-fab right bottom>
-        <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
-        <ion-fab-list side="left">
-          <button ion-fab type="submit" (click)="NuevoDocument()"><ion-icon name="clipboard"></ion-icon></button>
-          <button ion-fab type="submit" (click)="GuardarDocument()"><ion-icon name="send"></ion-icon></button>
-        </ion-fab-list>
+        <button ion-fab color="light" (click)="IrVistaDetalle()"><ion-icon ios="ios-add" md="md-add"></ion-icon></button>
       </ion-fab>
  
 </ion-content>
