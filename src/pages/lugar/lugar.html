@@ -32,6 +32,15 @@
           <ion-input type="text" [(ngModel)]="lugar.categoria"></ion-input>
         </ion-item>
 
+        <ion-item>
+            <button ion-button block (click)="takePhoto()">Toma una foto</button>
+            <img [src]="image" *ngIf="image"/>
+        </ion-item>
+
+        <ion-item>
+            <p>{{currentImage}}</p>
+        </ion-item>
+
         <button ion-button full (click)="guardarLugar()">Guardar</button>
       
       </ion-list>

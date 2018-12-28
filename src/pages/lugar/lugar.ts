@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { LugaresService } from '../../services/lugares.service';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { HomePage } from '../home/home';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
-import { Camera } from '@ionic-native/camera';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import firebase from 'firebase';
+import { FirebaseApp } from 'angularfire2';
+
 
 /**
  * Generated class for the LugarPage page.
@@ -22,16 +25,32 @@ import firebase from 'firebase';
 })
 export class LugarPage {
 
+  usuario:any = {};
+  qrData = null;
+  createdCode = null;
+  scannedCode = null;
+
+  image: string = null;
+
   lugar : any = {};
+
+  selectedPhoto;
+  loading;
+  currentImage;
+  imageName;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public lugaresService: LugaresService,
+    public afDB: AngularFireDatabase,
     private barcodeScanner: BarcodeScanner, 
-    private cameraPlugin: Camera,
-    private camera: Camera) {
+    private camera: Camera,
+    public loadingCtrl: LoadingController,
+    public firebase: FirebaseApp) {
       this.lugar = navParams.get('lugar');
   }
+
+  
 
   guardarLugar(){
     if(!this.lugar.id){
@@ -42,6 +61,57 @@ export class LugarPage {
     this.navCtrl.pop();
     console.log(this.lugar);
   }
+
+  takePhoto(){
+    const options : CameraOptions = {
+      quality:100,
+      targetHeight:200,
+      targetWidth:200,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      correctOrientation: true
+    }
+
+    this.camera.getPicture(options).then( ImageData => {
+      this.loading = this.loadingCtrl.create({
+        content: 'Tomado foto'
+      });
+      this.image = `data:image/jpeg;base64,${ImageData}`;
+
+      this.loading.present();
+      this.selectedPhoto = this.dataURLBlob('data:image/jpeg;base64,'+ImageData);
+      this.loading.dismiss();
+      this.currentImage = 'data:image/jpeg;base64,'+ImageData;
+    },(err)=>{
+      console.log(err);
+    });
+  }
+
+  dataURLBlob(dataURL){
+    let binary = atob(dataURL.split(',')[1]);
+    let array = [];
+    for (let index = 0; index < binary.length; index++) {
+      array.push(binary.charCodeAt(index));
+      
+    }
+    return new Blob([new Uint8Array(array)],{type:'image/jpeg'});
+  }
+
+  /************ */
+  upload(){
+    if(this.selectedPhoto){
+      var uploadTask = this.firebase.storage().ref().child('images/' + this.imageName + '.jpeg').put(this.selectedPhoto);
+      uploadTask.then(this.onError);
+    }
+  }
+
+  onError = (error) => {
+    console.log(error);
+    this.loading.dismiss();
+  }
+  /************* */
+
 
 
 }

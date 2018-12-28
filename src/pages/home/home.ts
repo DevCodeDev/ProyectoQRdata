@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
-import firebase from 'firebase';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LugarPage } from '../lugar/lugar';
 import { LugaresService } from '../../services/lugares.service';
+import * as firebase from 'firebase';
  
 // @IonicPage()
 @Component({
@@ -11,13 +15,6 @@ import { LugaresService } from '../../services/lugares.service';
   templateUrl: 'home.html'
 })
 export class HomePage {
-
-  usuario:any = {};
-  qrData = null;
-  createdCode = null;
-  scannedCode = null;
-
-  image: string = null;
 
   lugares : any = [];
 
