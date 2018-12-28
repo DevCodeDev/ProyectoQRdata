@@ -7,44 +7,14 @@
 <ion-header>
 
   <ion-navbar>
-<<<<<<< HEAD
-    <ion-title>Creacion de Data</ion-title>
-=======
     <ion-title>lugar</ion-title>
->>>>>>> prueba1
+
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-<<<<<<< HEAD
-    <ion-list>
-        <!-- Scanear codigo -->
-        <button ion-button full icon-left (click)="scanCode()" color="secondary"><ion-icon name="qr-scanner"></ion-icon>Scan Code</button>
-        <div *ngIf="scannedCode">
-          <p>{{lugar.scannedCode}}</p>
-        </div>
-        
-
-                <!-- tomar foto -->
-        <ion-item>
-            <button ion-button block (click)="getPicture()">Tomar Foto</button>
-            <img [src]="image" *ngIf="image"> 
-          </ion-item>
-        <!-- fin tomar foto -->
-          
-        <!-- descripcion -->
-        <ion-item>
-          <ion-label floating>descripcion</ion-label>
-          <ion-textarea [(ngModel)]="lugar.descripcion"></ion-textarea>
-        </ion-item>
-
-        <!-- guardar en bd -->
-        <button ion-button full (click)="guardarLugar()">Guardar</button>
-      
-      </ion-list>
-=======
     
     <ion-list>
 
@@ -76,5 +46,5 @@
       
       </ion-list>
 
->>>>>>> prueba1
+
 </ion-content>

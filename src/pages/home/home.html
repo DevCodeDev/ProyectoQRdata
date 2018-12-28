@@ -12,36 +12,6 @@
  
 <ion-content padding>
 
-<<<<<<< HEAD
-<!-- lista de detalles desde lugar -->
-<ion-list>
-    <ion-item-sliding>
-      <ion-item *ngFor="let item of employees | async">
-        <ion-avatar item-start>
-          <img src="img/slimer.png">
-        </ion-avatar>
-        <h3>{{item.name}}</h3>
-        <h3>{{item.lname}}</h3>
-        <h3>{{item.age}}</h3>
-        <h3>{{item.dept}}</h3>
-      </ion-item>
-      <ion-item-options side="right">
-        <button ion-button color="red">
-            <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
-          Delete
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
-<!-- Fin lista de detalles desde lugar -->
-
-<!-- boton de agregar -->
-<ion-fab right bottom>
-  <button ion-fab color="light" (click)="navegarALugar()"><ion-icon name="add"></ion-icon></button>
-</ion-fab>
-
-
-=======
     <ion-list>
         <ion-item-sliding *ngFor="let lugar of lugares">
           <ion-item>
@@ -64,6 +34,5 @@
       <ion-fab right bottom>
         <button ion-fab color="light" (click)="IrVistaDetalle()"><ion-icon ios="ios-add" md="md-add"></ion-icon></button>
       </ion-fab>
->>>>>>> prueba1
- 
+
 </ion-content>
