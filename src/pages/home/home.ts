@@ -15,9 +15,11 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  // lugares : any = [];
   itemsRef: AngularFireList<any>;
   lugares: Observable<any>;
+
+  // imageSource;
+  // lugaresPhoto;
 
   constructor( 
     public navCtrl: NavController, 
@@ -28,15 +30,23 @@ export class HomePage {
       this.itemsRef = afDB.list('/lugares');
       this.lugares = this.itemsRef.valueChanges();
       console.log(this.lugares);
-      // this.lugaresService.getLugares().valueChanges()
-      //  .subscribe((lugaresFB) =>{
-      //    this.lugares = lugaresFB;
-      //  })
+      
+      // this.imageSource = 'Santi';
+      // this.getPhotoURL();
+    
     }
 
     IrVistaDetalle(){
       this.navCtrl.push(LugarPage, {lugar:{}});
     }
+
+    // getPhotoURL(){
+    //   firebase.storage().ref().child('images/' + this.imageSource + '.jpeg')
+    //    .getDownloadURL()
+    //     .then((url)=>{
+    //       this.lugaresPhoto = url;
+    //    })
+    // }
 
     deleteLugar(){
       // this.itemsRef.remove(id);

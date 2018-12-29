@@ -118,7 +118,7 @@ export class LugarPage {
       this.loading.present();
       this.selectedPhoto = this.dataURLtoBlob('data:image/jpeg;base64,'+ImageData);
       this.loading.dismiss();
-      this.currentImage = 'data:image/jpeg;base64,'+ImageData;
+      this.currentImage = 'data:image/jpeg;base64,'+ ImageData;
     },(err)=>{
       console.log(err);
     });

@@ -35,12 +35,18 @@
 
         <ion-item>
             <button ion-button block (click)="takePhoto()">Toma una foto</button>
-            <img [src]="image" *ngIf="image"/>
+            <!-- <img [src]="image" *ngIf="image"/> -->
         </ion-item>
 
         <ion-item>
             <p>{{currentImage}}</p>
+            
         </ion-item>
+
+        <ion-item>
+          
+          <img src="{{currentImage}}" />
+      </ion-item>
 
         <button ion-button full (click)="guardarLugar(nombre,direccion,categoria)">Guardar</button>
       
