@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -16,16 +16,17 @@ import { Observable } from 'rxjs/Observable';
 })
 export class HomePage {
   // lugares : any = [];
-  lugares: Observable<any[]>
+  itemsRef: AngularFireList<any>;
+  lugares: Observable<any>;
 
   constructor( 
     public navCtrl: NavController, 
     public navParams: NavParams,
-
     public afDB: AngularFireDatabase,
     public lugaresService: LugaresService
     ) { 
-      this.lugares = afDB.list('/lugares').valueChanges();
+      this.itemsRef = afDB.list('/lugares');
+      this.lugares = this.itemsRef.valueChanges();
       console.log(this.lugares);
       // this.lugaresService.getLugares().valueChanges()
       //  .subscribe((lugaresFB) =>{
@@ -37,9 +38,10 @@ export class HomePage {
       this.navCtrl.push(LugarPage, {lugar:{}});
     }
 
-    deleteLugar(lugar){
+    deleteLugar(){
+      // this.itemsRef.remove(id);
       if(confirm('Seguro que desea borrar este elemento?')){
-        return this.lugaresService.deleteLugar(lugar).then(()=>{
+        return this.itemsRef.remove().then(()=>{
           alert('Elemento eliminado correctamente');
         });
       }

@@ -47,7 +47,8 @@ export class LugarPage {
     private barcodeScanner: BarcodeScanner, 
     private camera: Camera,
     public loadingCtrl: LoadingController,
-    public firebase: FirebaseApp) {
+    // public firebase: FirebaseApp
+    ) {
       // this.lugar = navParams.get('lugar');
       this.lugaress = afDB.list('/lugares');
       //firebase.initializeApp(environment.firebase);
@@ -83,7 +84,7 @@ export class LugarPage {
    /************ */
    upload(){
     if(this.selectedPhoto){
-      var uploadTask = this.firebase.storage()
+      var uploadTask = firebase.storage()
        .ref()
         .child('images/' + this.imageName + '.jpeg')
          .put(this.selectedPhoto);
