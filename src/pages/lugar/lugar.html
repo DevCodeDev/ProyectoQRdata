@@ -20,17 +20,17 @@
 
         <ion-item>
           <ion-label floating>Nombre</ion-label>
-          <ion-input type="text" [(ngModel)]="lugar.nombre"></ion-input>
+          <ion-input type="text" [(ngModel)]="nombre"></ion-input>
         </ion-item>
       
         <ion-item>
           <ion-label floating>Direccion</ion-label>
-          <ion-input type="text" [(ngModel)]="lugar.direccion"></ion-input>
+          <ion-input type="text" [(ngModel)]="direccion"></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label floating>Categoria</ion-label>
-          <ion-input type="text" [(ngModel)]="lugar.categoria"></ion-input>
+          <ion-input type="text" [(ngModel)]="categoria"></ion-input>
         </ion-item>
 
         <ion-item>
@@ -42,7 +42,7 @@
             <p>{{currentImage}}</p>
         </ion-item>
 
-        <button ion-button full (click)="guardarLugar()">Guardar</button>
+        <button ion-button full (click)="guardarLugar(nombre,direccion,categoria)">Guardar</button>
       
       </ion-list>
 

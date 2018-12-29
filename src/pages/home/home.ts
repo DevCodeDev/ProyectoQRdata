@@ -8,13 +8,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LugarPage } from '../lugar/lugar';
 import { LugaresService } from '../../services/lugares.service';
 import * as firebase from 'firebase';
+import { Observable } from 'rxjs/Observable';
  
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  lugares : any = [];
+  // lugares : any = [];
+  lugares: Observable<any[]>
 
   constructor( 
     public navCtrl: NavController, 
@@ -23,10 +25,12 @@ export class HomePage {
     public afDB: AngularFireDatabase,
     public lugaresService: LugaresService
     ) { 
-      this.lugaresService.getLugares().valueChanges()
-       .subscribe((lugaresFB) =>{
-         this.lugares = lugaresFB;
-       })
+      this.lugares = afDB.list('/lugares').valueChanges();
+      console.log(this.lugares);
+      // this.lugaresService.getLugares().valueChanges()
+      //  .subscribe((lugaresFB) =>{
+      //    this.lugares = lugaresFB;
+      //  })
     }
 
     IrVistaDetalle(){
