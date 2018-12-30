@@ -14,19 +14,21 @@
 
     <ion-list>
         <ion-item-sliding *ngFor="let item of lugares | async json">
+            
           <ion-item>
               
             <ion-avatar item-start>
               
               <img src="https://firebasestorage.googleapis.com/v0/b/ionicreadqr.appspot.com/o/images%2F{{ item.image }}.jpeg?alt=media&token=efc332bf-dd23-4dd4-b9f3-d360e6721b28">
             </ion-avatar>
+            <h2>{{item.$key}}</h2>
             <h2>{{item.nombre}}</h2>
             <h2>{{item.direccion}}</h2>
             <h2>{{item.categoria}}</h2>
             <p>photo name: {{item.image}}</p>
           </ion-item>
           <ion-item-options side="right">
-            <button ion-button color="danger" (click)="deleteLugar()">
+            <button ion-button color="danger" (click)="delete(item.$key)">
                 <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
               Delete
             </button>

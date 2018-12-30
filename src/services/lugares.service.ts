@@ -23,12 +23,5 @@ export class LugaresService {
         return this.afDB.database.ref('/lugares/' + lugar.id).remove();
     }
 
-    public uploadPicture(picture_name, image){
-        return this.angularFireStorage.ref('/pictures/' + picture_name)
-          .putString(image, 'data_url');
-    }
-    public getDownloadURL(picture_name){
-        return this.angularFireStorage.ref('/pictures/' + picture_name)
-          .getDownloadURL();
-    }
+  
 }

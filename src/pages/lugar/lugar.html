@@ -19,6 +19,15 @@
     <ion-list>
 
         <ion-item>
+            <button ion-button block (click)="scan()">Scaneado</button>
+        </ion-item>
+
+        <ion-item>
+          <h3>formato: {{data.format}}</h3>
+          <h3>text: {{data.text}}</h3>
+        </ion-item>
+        
+        <ion-item>
           <ion-label floating>Nombre</ion-label>
           <ion-input type="text" [(ngModel)]="nombre"></ion-input>
         </ion-item>
@@ -35,7 +44,6 @@
 
         <ion-item>
             <button ion-button block (click)="takePhoto()">Toma una foto</button>
-            <!-- <img [src]="image" *ngIf="image"/> -->
         </ion-item>
 
         <ion-item>

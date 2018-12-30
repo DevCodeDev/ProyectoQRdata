@@ -3,18 +3,12 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { LugaresService } from '../../services/lugares.service';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { HomePage } from '../home/home';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import * as firebase from 'firebase';
 import { FirebaseApp } from 'angularfire2';
 import { Observable } from 'rxjs/Observable';
-import { environment } from '../../environments/environments';
-/**
- * Generated class for the LugarPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -27,11 +21,11 @@ export class LugarPage {
   profilePicture: any = {};
   pictureId: any;
 
-  // lugar : any = {};
   nombre = '';
   direccion = '';
   categoria = '';
 
+  // listado de conexion a bd
   lugaress : AngularFireList<any>;
 
   selectedPhoto;
@@ -39,7 +33,10 @@ export class LugarPage {
   currentImage;
   imageName;
 
-
+  // sncaneado
+  data={};
+  option: BarcodeScannerOptions;
+  
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public lugaresService: LugaresService,
@@ -47,41 +44,28 @@ export class LugarPage {
     private barcodeScanner: BarcodeScanner, 
     private camera: Camera,
     public loadingCtrl: LoadingController,
-    // public firebase: FirebaseApp
     ) {
-      // this.lugar = navParams.get('lugar');
       this.lugaress = afDB.list('/lugares');
-      //firebase.initializeApp(environment.firebase);
   }
 
+  // guardado de datos
   guardarLugar(nombre,direccion,categoria){
     this.imageName = nombre;
 
     this.lugaress.push({
-
+      
       nombre: nombre,
       direccion: direccion,
       categoria:categoria,
       image:this.imageName
       
     }).then(newLugaar => {
-      this.navCtrl.pop();
+      this.navCtrl.setRoot(HomePage);
     })
     this.upload();
   }
-
-  // guardarLugar(){
-  //   if(!this.lugar.id){
-  //     this.lugar.id = Date.now();
-  //   }
-  //   this.lugaresService.createLugar(this.lugar);
-  //   alert("Guardado con exitoso");
-  //   this.navCtrl.pop();
-  //   console.log(this.lugar);
-  // }
-
     
-   /************ */
+   /******* carga de foto a bd ***** */
    upload(){
     if(this.selectedPhoto){
       var uploadTask = firebase.storage()
@@ -98,7 +82,7 @@ export class LugarPage {
   }
   /************* */
 
-
+// toma de foto
 
   takePhoto(){
     const options : CameraOptions = {
@@ -132,6 +116,21 @@ export class LugarPage {
       
     }
     return new Blob([new Uint8Array(array)],{type:'image/jpeg'});
+  }
+
+  // scaneado
+  scan(){
+
+    this.option = {
+      prompt: "por favor scanee su codiogo"
+    }
+    this.barcodeScanner.scan(this.option).then((barcodeData) =>{
+      console.log(barcodeData);
+      this.data = barcodeData;
+    }, (err) => {
+        console.log(err);
+    });
+    this.upload();
   }
 
 
