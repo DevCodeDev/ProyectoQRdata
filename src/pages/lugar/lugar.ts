@@ -36,6 +36,7 @@ export class LugarPage {
   // sncaneado
   data={};
   option: BarcodeScannerOptions;
+  barcodeData:any;//cualquier tipo
   
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -43,7 +44,7 @@ export class LugarPage {
     public afDB: AngularFireDatabase,
     private barcodeScanner: BarcodeScanner, 
     private camera: Camera,
-    public loadingCtrl: LoadingController,
+    public loadingCtrl: LoadingController
     ) {
       this.lugaress = afDB.list('/lugares');
   }
@@ -51,12 +52,14 @@ export class LugarPage {
   // guardado de datos
   guardarLugar(nombre,direccion,categoria){
     this.imageName = nombre;
+    this.barcodeData = this.data;//asignamos que enviar a bd
 
     this.lugaress.push({
       
       nombre: nombre,
       direccion: direccion,
       categoria:categoria,
+      barcodeData:this.barcodeData,//envio a bd
       image:this.imageName
       
     }).then(newLugaar => {
@@ -120,7 +123,6 @@ export class LugarPage {
 
   // scaneado
   scan(){
-
     this.option = {
       prompt: "por favor scanee su codiogo"
     }

@@ -15,9 +15,6 @@ export class HomePage {
   itemsRef: AngularFireList<any>;
   lugares: Observable<any>;
 
-  // imageSource;
-  // lugaresPhoto;
-
   constructor( 
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -28,22 +25,11 @@ export class HomePage {
       this.lugares = this.itemsRef.valueChanges();
       console.log(this.lugares);
       
-      // this.imageSource = 'Santi';
-      // this.getPhotoURL();
-    
     }
 
     IrVistaDetalle(){
       this.navCtrl.push(LugarPage, {lugar:{}});
     }
-
-    // getPhotoURL(){
-    //   firebase.storage().ref().child('images/' + this.imageSource + '.jpeg')
-    //    .getDownloadURL()
-    //     .then((url)=>{
-    //       this.lugaresPhoto = url;
-    //    })
-    // }
 
     delete(key: string){
       // this.itemsRef.remove(id);
