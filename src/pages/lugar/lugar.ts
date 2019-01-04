@@ -23,7 +23,7 @@ export class LugarPage {
   pictureId: any;
 
   nombre = '';
-  direccion = '';
+  // direccion = '';
   categoria = '';
   
   
@@ -59,7 +59,7 @@ export class LugarPage {
     this.lugaress.push({
 
       nombre: nombre,
-      direccion: direccion,
+      // direccion: direccion,
       categoria:categoria,
       barcodeData:this.barcodeData,//envio a bd
       image:this.imageName
