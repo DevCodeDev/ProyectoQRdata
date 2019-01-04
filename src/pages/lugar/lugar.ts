@@ -8,8 +8,6 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import * as firebase from 'firebase';
 import { FirebaseApp } from 'angularfire2';
 import { Observable } from 'rxjs/Observable';
-import { dateDataSortValue } from 'ionic-angular/umd/util/datetime-util';
-
 
 @IonicPage()
 @Component({
@@ -23,7 +21,6 @@ export class LugarPage {
   pictureId: any;
 
   nombre = '';
-  // direccion = '';
   categoria = '';
   
   
@@ -59,7 +56,6 @@ export class LugarPage {
     this.lugaress.push({
 
       nombre: nombre,
-      // direccion: direccion,
       categoria:categoria,
       barcodeData:this.barcodeData,//envio a bd
       image:this.imageName
