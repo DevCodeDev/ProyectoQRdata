@@ -10,6 +10,7 @@ export class LugaresService {
     public getLugares(){
         return this.afDB.list('/lugares/');
     }
+
     public getLugar(id){
         return this.afDB.object('/lugares/' + id);
     }

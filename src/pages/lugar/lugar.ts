@@ -26,6 +26,7 @@ export class LugarPage {
   
   // listado de conexion a bd
   lugaress : AngularFireList<any>;
+  date:any; //dia
 
   selectedPhoto;
   loading;
@@ -53,8 +54,12 @@ export class LugarPage {
     this.imageName = nombre;
     this.barcodeData = this.data;//asignamos que enviar a bd
 
+    //dia
+    this.date = Date.now();
+
     this.lugaress.push({
 
+      date: this.date,//envio de dia
       nombre: nombre,
       categoria:categoria,
       barcodeData:this.barcodeData,//envio a bd
