@@ -21,11 +21,10 @@
               
               <img src="https://firebasestorage.googleapis.com/v0/b/ionicreadqr.appspot.com/o/images%2F{{ item.image }}.jpeg?alt=media&token=efc332bf-dd23-4dd4-b9f3-d360e6721b28">
             </ion-avatar>
-            <h2>{{item.$key}}</h2>
-            <h2>{{item.nombre}}</h2>
-            <h2>{{item.direccion}}</h2>
-            <h2>{{item.categoria}}</h2>
-            <!-- <p>photo name: {{item.image}}</p> -->
+            <h4>{{item.barcodeData.text}}</h4>  <!--trae la data de barcodedata -->
+            <h4>{{item.nombre}}</h4>
+            <h4>{{item.direccion}}</h4>
+            <h4>{{item.categoria}}</h4>
           </ion-item>
           <ion-item-options side="right">
             <button ion-button color="danger" (click)="delete(item.$key)">

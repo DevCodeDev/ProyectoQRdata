@@ -8,6 +8,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import * as firebase from 'firebase';
 import { FirebaseApp } from 'angularfire2';
 import { Observable } from 'rxjs/Observable';
+import { dateDataSortValue } from 'ionic-angular/umd/util/datetime-util';
 
 
 @IonicPage()
@@ -24,7 +25,8 @@ export class LugarPage {
   nombre = '';
   direccion = '';
   categoria = '';
-
+  
+  
   // listado de conexion a bd
   lugaress : AngularFireList<any>;
 
@@ -37,7 +39,7 @@ export class LugarPage {
   data={};
   option: BarcodeScannerOptions;
   barcodeData:any;//cualquier tipo
-  
+
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public lugaresService: LugaresService,
@@ -50,12 +52,12 @@ export class LugarPage {
   }
 
   // guardado de datos
-  guardarLugar(nombre,direccion,categoria){
+  guardarLugar(nombre,direccion,categoria){//Entre categoria y nombre estuvo direccion
     this.imageName = nombre;
     this.barcodeData = this.data;//asignamos que enviar a bd
 
     this.lugaress.push({
-      
+
       nombre: nombre,
       direccion: direccion,
       categoria:categoria,
