@@ -17,17 +17,17 @@
             
           <ion-item>
               
-            <ion-avatar item-start>
+            <ion-thumbnail item-start>
               
               <img src="https://firebasestorage.googleapis.com/v0/b/ionicreadqr.appspot.com/o/images%2F{{ item.image }}.jpeg?alt=media&token=efc332bf-dd23-4dd4-b9f3-d360e6721b28">
-            </ion-avatar>
+            </ion-thumbnail>
             <h4>{{item.barcodeData.text}}</h4>  <!--trae la data de barcodedata -->
             <h4>{{item.nombre}}</h4>
             <h4>{{item.categoria}}</h4>
-            <h4>{{item.date}}</h4>
+            <h5>{{item.timestamp  | date:'dd/MM/yyyy HH:mm:ss'}}</h5>
           </ion-item>
           <ion-item-options side="right">
-            <button ion-button color="danger" (click)="delete(item.$key)">
+            <button ion-button color="danger" (click)="delete()">
                 <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
               Delete
             </button>
@@ -40,3 +40,5 @@
       </ion-fab>
 
 </ion-content>
+
+

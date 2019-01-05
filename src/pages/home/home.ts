@@ -3,7 +3,6 @@ import { NavController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { LugarPage } from '../lugar/lugar';
 import { LugaresService } from '../../services/lugares.service';
-import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Observable';
  
 @Component({
@@ -31,10 +30,10 @@ export class HomePage {
       this.navCtrl.push(LugarPage, {lugar:{}});
     }
 
-    delete(key: string){
+    delete(){
       // this.itemsRef.remove(id);
       if(confirm('Seguro que desea borrar este elemento?')){
-        return this.itemsRef.remove(key).then(()=>{
+        return this.itemsRef.remove().then(()=>{
           alert('Elemento eliminado correctamente');
         });
         

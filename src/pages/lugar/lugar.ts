@@ -6,8 +6,6 @@ import { HomePage } from '../home/home';
 import { BarcodeScanner, BarcodeScannerOptions } from '@ionic-native/barcode-scanner';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import * as firebase from 'firebase';
-import { FirebaseApp } from 'angularfire2';
-import { Observable } from 'rxjs/Observable';
 
 @IonicPage()
 @Component({
@@ -26,7 +24,6 @@ export class LugarPage {
   
   // listado de conexion a bd
   lugaress : AngularFireList<any>;
-  date:any; //dia
 
   selectedPhoto;
   loading;
@@ -37,6 +34,8 @@ export class LugarPage {
   data={};
   option: BarcodeScannerOptions;
   barcodeData:any;//cualquier tipo
+
+  time:any; //Diahora
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -54,21 +53,22 @@ export class LugarPage {
     this.imageName = nombre;
     this.barcodeData = this.data;//asignamos que enviar a bd
 
-    //dia
-    this.date = Date.now();
+    this.time = firebase.database.ServerValue.TIMESTAMP; //Diahora
 
     this.lugaress.push({
-
-      date: this.date,//envio de dia
+      
       nombre: nombre,
       categoria:categoria,
       barcodeData:this.barcodeData,//envio a bd
-      image:this.imageName
+      image:this.imageName,
+      timestamp:Date.now() //Diahora
       
     }).then(newLugaar => {
       this.navCtrl.setRoot(HomePage);
-    })
+    },error=>{console.log(error);})
     this.upload();
+    console.log(this.lugaress);
+
   }
     
    /******* carga de foto a bd ***** */
